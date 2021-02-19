@@ -10,7 +10,11 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios('https://api.randomuser.me/?results=5')
+        this.getUsers();
+    }
+    
+    getUsers() {
+        axios('https://api.randomuser.me/?nat=US&results=5')
             .then(response => {
                 this.setState({
                     users: response.data.results
@@ -21,7 +25,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                First change.
+                {this.state.users.map((user, index) => 
+                    <div key={index}>
+                        <h3>{user.name.first} {user.name.last}</h3>
+                        <p>{user.email}</p>
+                        <hr />
+                    </div>
+                )}
             </div>
         );
     }
