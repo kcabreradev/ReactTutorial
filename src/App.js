@@ -37,25 +37,27 @@ class App extends Component {
         })
         axios('https://api.randomuser.me/?nat=US&results=5')
             .then(response => {
+                const {results} = response.data;
                 this.setState({
-                    users: replaceUsers ? response.data.results : [...this.state.users, ...response.data.results],
+                    users: replaceUsers ? results : [...this.state.users, ...results],
                     loading: false
                 })
             })
     }
 
     render() {
+        const {loading, users} = this.state;
         return (
             <div className="App">
                 <form onSubmit={this.handleSubmit}>
                     <input type="submit" value="load users" />
                 </form>
                 <button onClick={this.handleMore}>More users</button>
-                {this.state.loading ? 
+                {loading ? 
                     <Loading message="Not loaded yet" /> 
-                    : this.state.users.map((user, index) => 
+                    : users.map((user, index) => 
                     <div key={index}>
-                        <h3>{user.name.first} {user.name.last}</h3>
+                        <h3 style={{color: 'red'}}>{user.name.first} {user.name.last}</h3>
                         <p>{user.email}</p>
                         <hr />
                     </div>
