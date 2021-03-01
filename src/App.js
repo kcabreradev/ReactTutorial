@@ -1,5 +1,6 @@
 import { Component } from "react";
-import axios from 'axios'
+import axios from 'axios';
+import { Loading } from './Loading';
 
 class App extends Component {
     constructor(props) {
@@ -30,7 +31,9 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {this.state.loading ? 'Loading' : this.state.users.map((user, index) => 
+                {this.state.loading ? 
+                    <Loading message="Not loaded yet" /> 
+                    : this.state.users.map((user, index) => 
                     <div key={index}>
                         <h3>{user.name.first} {user.name.last}</h3>
                         <p>{user.email}</p>
