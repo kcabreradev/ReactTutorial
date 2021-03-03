@@ -14,7 +14,7 @@ export function Navbar() {
                             <Link to="/counter" className="nav-link" activeClassName="active">Counter</Link>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to="/test2" className="nav-link" activeClassName="active">test2</Link>
+                            <Link to="/news" className="nav-link" activeClassName="active">News</Link>
                         </li>
                     </ul>
                 </div>
