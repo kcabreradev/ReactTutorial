@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export function Navbar() {
     return (
@@ -8,13 +8,13 @@ export function Navbar() {
                 <div className="me-auto">
                     <ul className="navbar-nav flex-row">
                         <li className="nav-item mx-3">
-                            <Link to="/users" className="nav-link" activeClassName="active">Users</Link>
+                            <NavLink to="/users" className="nav-link" activeClassName="active">Users</NavLink>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to="/counter" className="nav-link" activeClassName="active">Counter</Link>
+                            <NavLink to="/counter" className="nav-link" activeClassName="active">Counter</NavLink>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to="/news" className="nav-link" activeClassName="active">News</Link>
+                            <NavLink to="/news" className="nav-link" activeClassName="active">News</NavLink>
                         </li>
                     </ul>
                 </div>
