@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 export const News = () => {
     const [news, setNews] = useState([]);
     const [searchQuery, setSearchQuery] = useState('react');
-    const [url, setUrl] = useState(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`)
+    const [url, setUrl] = useState(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`);
+    const [loading, setLoading] = useState(false);
 
     const fetchNews = () => {
+        setLoading(true);
         fetch(url)
             .then(result => result.json())
-            .then(data => setNews(data.hits))
+            .then(data => (setNews(data.hits), setLoading(false)))
             .catch(error => console.log(error));
     }
 
@@ -32,7 +34,7 @@ export const News = () => {
                 <input type="text" value={searchQuery} onChange={handleChange} />
                 <button type="submit">Search</button>
             </form>
-            {news.map((n, i) => (<p key={i}>{n.title}</p>))}
+            { loading ? 'Loading...' : news.map((n, i) => (<p key={i}>{n.title}</p>))}
         </div>
     );
 }
