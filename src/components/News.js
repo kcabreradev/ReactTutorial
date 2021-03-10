@@ -23,6 +23,8 @@ export const News = () => {
         setUrl(`http://hn.algolia.com/api/v1/search?query=${searchQuery}`)
     }
 
+    const showContent = () => ( loading ? 'Loading...' : news.map((n, i) => (<p key={i}>{n.title}</p>)) )
+
     useEffect(() => {
         fetchNews();
     }, [url]);
@@ -34,7 +36,8 @@ export const News = () => {
                 <input type="text" value={searchQuery} onChange={handleChange} />
                 <button type="submit">Search</button>
             </form>
-            { loading ? 'Loading...' : news.map((n, i) => (<p key={i}>{n.title}</p>))}
+            
+            { showContent() }
         </div>
     );
 }
